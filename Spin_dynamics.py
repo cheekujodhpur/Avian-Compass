@@ -27,7 +27,7 @@ def Singlet_yield(theta, rate):
 				g_a[i, j] += Sz_a[i, j]*Sx_a[j, i] + Sz_a[i, j]*Sy_a[j, i] + Sz_a[i, j]*Sz_a[j, i]
 		print(chr(27) + "[2J")
 		print('g_a')
-		print(i/576*100)
+		print str(i/576.0*100)
 	for i in range(0, 384):
 		for j in range(0, 384):
 				g_b[i, j] += Sx_b[i, j]*Sx_b[j, i] + Sx_b[i, j]*Sy_b[j, i] + Sx_b[i, j]*Sz_b[j, i] 
@@ -35,7 +35,7 @@ def Singlet_yield(theta, rate):
 				g_b[i, j] += Sz_b[i, j]*Sx_b[j, i] + Sz_b[i, j]*Sy_b[j, i] + Sz_b[i, j]*Sz_b[j, i]
 		print(chr(27) + "[2J")
 		print('g_b')
-		print(i/384*100)
+		print str(i/384.0*100)
 	# This function calculates singlet yield according to Cintolesi et. al. 2003
 	# Loading the file regarding eigenvalues
 	opened_fileA =  str(theta*10 + 1)
@@ -52,10 +52,10 @@ def Singlet_yield(theta, rate):
 				for s in range(0, 384):
 					# Summation is the summation term in the
 					wa_mn = Ha_eigen_theta[m] - Ha_eigen_theta[n]						# Frequencies as deined in timmel et. al. 1998
-					wb_rs = Hb_eigen_theta[r] - Hb_eigen_theta[s]						
 					summation += (g_a[n,m] * g_b[r, s]) * (rate**2/(rate**2 + (wa_mn - wb_rs)**2))
+					print summation
 		print(chr(27) + "[2J")
-		print(m/576*100)
+		print str(m/576.0*100)
 
 
 	singletyield = (summation/(576*384))
@@ -68,15 +68,3 @@ C = Singlet_yield(60, 10**4)
 np.savetxt('yield0.txt', [C])
 D = Singlet_yield(90, 10**4) 
 np.savetxt('yield0.txt', [D])
-
-
-
-
-
-
-
-
-
-
-
-
